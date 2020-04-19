@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IWordService {
 
-    Word addArticle(Word article) throws WordException;
+    Word addWord(Word word) throws WordException;
 
-    void removeArticle(int id) throws WordException;
+    void removeWord(int id) throws WordException;
 
-    Word queryArticleById(int id) throws WordException;
+    Word queryWordById(int id) throws WordException;
 
     List<Word> findAll() throws WordException;
 
-    List<Word> findArticleByParent_id(int category_id);
+    List<Word> findWordByParent_id(int parent_id);
 }
