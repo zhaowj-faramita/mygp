@@ -1,9 +1,10 @@
-package com.briup.zhaowenjie.cms.web.filter;
+package com.zhaowenjie.mygp.web.filter;
 
-import com.briup.zhaowenjie.cms.config.MessageUtil;
-import com.briup.zhaowenjie.cms.utils.CodeUtil;
-import com.briup.zhaowenjie.cms.utils.JwtTokenUtils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhaowenjie.mygp.config.MessageUtil;
+import com.zhaowenjie.mygp.utils.CodeUtil;
+import com.zhaowenjie.mygp.utils.JwtTokenUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

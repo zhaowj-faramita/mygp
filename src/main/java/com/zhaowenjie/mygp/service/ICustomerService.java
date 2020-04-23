@@ -1,8 +1,9 @@
-package com.briup.zhaowenjie.cms.service;
+package com.zhaowenjie.mygp.service;
 
 
-import com.briup.zhaowenjie.cms.bean.Customer;
-import com.briup.zhaowenjie.cms.exception.CustomerException;
+import com.zhaowenjie.mygp.bean.Customer;
+import com.zhaowenjie.mygp.exception.CustomerException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ public interface ICustomerService {
 
     Customer addCustomer(Customer customer) throws CustomerException;
 
-    void removeCustomer(int id) throws CustomerException;
+    void deleteCustomer(int id) throws CustomerException;
+
+    void deleteCustomerByUsername(String username)throws CustomerException;
 
     Customer queryCustomerById(int id) throws CustomerException;
 

@@ -1,4 +1,4 @@
-package com.briup.zhaowenjie.cms.config;
+package com.zhaowenjie.mygp.config;
 
 import org.springframework.stereotype.Component;
 

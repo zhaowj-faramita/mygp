@@ -1,6 +1,7 @@
-package com.briup.zhaowenjie.cms.utils;
+package com.zhaowenjie.mygp.utils;
 
-import com.briup.zhaowenjie.cms.exception.CustomerException;
+
+import com.zhaowenjie.mygp.exception.CustomerException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

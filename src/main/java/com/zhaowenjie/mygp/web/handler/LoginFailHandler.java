@@ -1,8 +1,9 @@
-package com.briup.zhaowenjie.cms.web.handler;
+package com.zhaowenjie.mygp.web.handler;
 
-import com.briup.zhaowenjie.cms.config.MessageUtil;
-import com.briup.zhaowenjie.cms.utils.CodeUtil;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhaowenjie.mygp.config.MessageUtil;
+import com.zhaowenjie.mygp.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -19,8 +20,10 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
-
+        System.out.println("到錯了");
         response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control","no-cache");
         response.getWriter().write(objectMapper.writeValueAsString(MessageUtil.error(CodeUtil.LOGINFAIL_CODE,"登陆失败：" + exception.getMessage())));
     }
 }

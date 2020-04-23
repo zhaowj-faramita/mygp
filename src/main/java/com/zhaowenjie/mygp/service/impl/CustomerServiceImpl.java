@@ -1,10 +1,11 @@
-package com.briup.zhaowenjie.cms.service.impl;
+package com.zhaowenjie.mygp.service.impl;
 
-import com.briup.zhaowenjie.cms.bean.Customer;
-import com.briup.zhaowenjie.cms.dao.ICustomerDao;
-import com.briup.zhaowenjie.cms.exception.CustomerException;
-import com.briup.zhaowenjie.cms.service.ICustomerService;
-import com.briup.zhaowenjie.cms.utils.CodeUtil;
+
+import com.zhaowenjie.mygp.bean.Customer;
+import com.zhaowenjie.mygp.dao.ICustomerDao;
+import com.zhaowenjie.mygp.exception.CustomerException;
+import com.zhaowenjie.mygp.service.ICustomerService;
+import com.zhaowenjie.mygp.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,19 @@ public class CustomerServiceImpl implements ICustomerService {
         if (customer == null) {
             throw new CustomerException(CodeUtil.DEADLY_CODE, "addCustomer:参数为空");
         } else {
+            customer.setRole("Guest");
             return iCustomerDao.save(customer);
         }
     }
 
     @Override
-    public void removeCustomer(int id) throws CustomerException {
-            iCustomerDao.deleteById(id);
+    public void deleteCustomer(int id) throws CustomerException {
+        iCustomerDao.deleteById(id);
+    }
+
+    @Override
+    public void deleteCustomerByUsername(String username) throws CustomerException {
+        iCustomerDao.deleteByUsername(username);
     }
 
     @Override

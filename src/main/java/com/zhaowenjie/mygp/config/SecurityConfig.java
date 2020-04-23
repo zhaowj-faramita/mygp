@@ -1,8 +1,9 @@
-package com.briup.zhaowenjie.cms.config;
+package com.zhaowenjie.mygp.config;
 
-import com.briup.zhaowenjie.cms.web.filter.JwtAuthenticationTokenFilter;
-import com.briup.zhaowenjie.cms.web.handler.LoginFailHandler;
-import com.briup.zhaowenjie.cms.web.handler.LoginSuccessHandler;
+
+import com.zhaowenjie.mygp.web.filter.JwtAuthenticationTokenFilter;
+import com.zhaowenjie.mygp.web.handler.LoginFailHandler;
+import com.zhaowenjie.mygp.web.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -58,8 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // 设置允许访问的资源
-                .antMatchers("/user/login","/user/form","/swagger-ui.html/**").permitAll()
-                // 设置允许访问的资源
+                .antMatchers(
+                        "/myap/**",
+                        "/word/query/*",
+                        "/word/find/*",
+                        "/user/login",
+                        "/user/form",
+                        "/customer/addOrUpdate",
+                        "/swagger-ui.html/**").permitAll()
                 .antMatchers(
                         "/v2/api-docs",
                         "/swagger-resources",
@@ -67,8 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/configuration/ui",
                         "/configuration/security",
                         "/webjars/**",
-                        "/index/**",
-                        "/customer/addOrUpdate"
+                        "/index/**"
                 ).permitAll()
                 .anyRequest().authenticated();
 

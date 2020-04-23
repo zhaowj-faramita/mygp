@@ -1,4 +1,5 @@
-package com.briup.zhaowenjie.cms.exception;
+package com.zhaowenjie.mygp.exception;
+
 
 /**
  * @program: estore

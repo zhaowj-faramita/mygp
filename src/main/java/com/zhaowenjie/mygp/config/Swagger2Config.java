@@ -1,4 +1,4 @@
-package com.briup.zhaowenjie.cms.config;
+package com.zhaowenjie.mygp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +36,7 @@ public class Swagger2Config {
 		pars.add(tokenPar.build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.briup.zhaowenjie.cms.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.zhaowenjie.mygp.web"))
                 .paths(PathSelectors.any())
                 .build()
 				.globalOperationParameters(pars)//添加该句使得swagger可输入令牌
@@ -47,9 +47,8 @@ public class Swagger2Config {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("看点资讯")
-				.description("杰普学员-暗风")
-				.termsOfServiceUrl("http://www.briup.com")
+				.title("毕业设计_个人网站后端")
+				.description("赵文杰")
 				.version("0.1")
 				.build();
 	}

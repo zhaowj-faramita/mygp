@@ -1,9 +1,9 @@
-package com.briup.zhaowenjie.cms.web.controller;
+package com.zhaowenjie.mygp.web.controller;
 
-import com.briup.zhaowenjie.cms.config.Message;
-import com.briup.zhaowenjie.cms.config.MessageUtil;
-import com.briup.zhaowenjie.cms.utils.CodeUtil;
-import com.briup.zhaowenjie.cms.utils.JwtTokenUtils;
+import com.zhaowenjie.mygp.config.Message;
+import com.zhaowenjie.mygp.config.MessageUtil;
+import com.zhaowenjie.mygp.utils.CodeUtil;
+import com.zhaowenjie.mygp.utils.JwtTokenUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -13,23 +13,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Api(description = "登陆相关接口")
+@Api(description = "登陆处理器")
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class LoginController {
 
     @Autowired
     @Qualifier("userDetailServiceImpl")
     private UserDetailsService userDetailsService;
-
 
     @PostMapping("/form")
     @ApiOperation(value = "登入身份验证（JWT验证）", notes = "登入")

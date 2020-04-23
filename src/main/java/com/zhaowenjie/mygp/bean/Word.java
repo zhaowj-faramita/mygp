@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "mygp_word")
@@ -17,28 +16,44 @@ public class Word implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(value = "文档的id",required = true)
-    int id;
+    @ApiModelProperty(value = "文档的id")
+    private int id;
     @ApiModelProperty(value = "题目",required = true)
-    String title;
+    private String title;
     @ApiModelProperty(value = "内容",required = true)
-    String textArea;
+    private String textArea;
     @ApiModelProperty(value = "作者",required = true)
-    String Author;
-    @ApiModelProperty(value = "上传时间",required = true)
-    Date publishDate;
-    @ApiModelProperty(value = "文档等级",hidden = true)
-    int parent_id;
+    private String author;
+    @ApiModelProperty(value = "上传时间",hidden = true)
+    private Date publishDate;
+    @ApiModelProperty(value = "文档从属")
+    private int parentId;
+    @ApiModelProperty(value = "文档等级",required = true)
+    private int wordLevel;
 
     public Word() {
     }
 
-    public Word(String title, String textArea, String author, Date publishDate, int parent_id) {
+    public Word(String title, String textArea, String author, Date publishDate, int parentId, int wordLevel) {
         this.title = title;
         this.textArea = textArea;
-        Author = author;
+        this.author = author;
         this.publishDate = publishDate;
-        this.parent_id = parent_id;
+        this.parentId = parentId;
+        this.wordLevel = wordLevel;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", textArea='" + textArea + '\'' +
+                ", author='" + author + '\'' +
+                ", publishDate=" + publishDate +
+                ", parentId=" + parentId +
+                ", wordLevel=" + wordLevel +
+                '}';
     }
 
     public static long getSerialVersionUID() {
@@ -70,11 +85,11 @@ public class Word implements Serializable {
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setAuthor(String author) {
-        Author = author;
+        this.author = author;
     }
 
     public Date getPublishDate() {
@@ -85,11 +100,19 @@ public class Word implements Serializable {
         this.publishDate = publishDate;
     }
 
-    public int getParent_id() {
-        return parent_id;
+    public int getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(int parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public int getWordLevel() {
+        return wordLevel;
+    }
+
+    public void setWordLevel(int wordLevel) {
+        this.wordLevel = wordLevel;
     }
 }

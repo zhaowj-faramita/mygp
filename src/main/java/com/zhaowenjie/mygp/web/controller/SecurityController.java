@@ -1,8 +1,10 @@
-package com.briup.zhaowenjie.cms.web.controller;
+package com.zhaowenjie.mygp.web.controller;
 
-import com.briup.zhaowenjie.cms.config.Message;
-import com.briup.zhaowenjie.cms.config.MessageUtil;
-import com.briup.zhaowenjie.cms.utils.CodeUtil;
+
+import com.zhaowenjie.mygp.config.Message;
+import com.zhaowenjie.mygp.config.MessageUtil;
+import com.zhaowenjie.mygp.utils.CodeUtil;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 @ApiIgnore
 public class SecurityController {
     @GetMapping("/login")
