@@ -11,7 +11,7 @@ public interface IWordDao extends JpaRepository<Word,Integer> {
     List<Word> queryWordByParentId(int parentId);
     List<Word> queryWordByWordLevel(int wordLevel);
     List<Word> queryWordByAuthor(String author);
-    @Query("select e from Word e ORDER BY e.publishDate desc ")
+    @Query("select e from Word e ORDER BY e.publishDate asc ")
     List<Word> findAllOrderByPublishDate();
     void deleteByTitle(String title);
 }

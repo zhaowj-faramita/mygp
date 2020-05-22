@@ -24,7 +24,7 @@ public class JwtTokenUtils {
 
     public static final String TOKEN_HEADER = "Authorization";
 
-    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String TOKEN_PREFIX = "Bearer";
     /**
      * 密钥key
      */
@@ -64,7 +64,7 @@ public class JwtTokenUtils {
      */
     public static String createToken(UserDetails details, boolean isRememberMe) throws CustomerException {
         // 如果选择记住我，则token的过期时间为
-        long expiration = isRememberMe ? EXPIRATION_REMEMBER : EXPIRATION;
+        long expiration = true ? EXPIRATION_REMEMBER : EXPIRATION;
 
         HashMap<String, Object> map = new HashMap<>();
 

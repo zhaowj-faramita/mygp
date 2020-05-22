@@ -65,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/word/find/*",
                         "/user/login",
                         "/user/form",
+                        "/user/getUserDetailByToken",
                         "/customer/addOrUpdate",
                         "/swagger-ui.html/**").permitAll()
                 .antMatchers(

@@ -24,4 +24,6 @@ public interface IWordService {
     List<Word> queryWordByWordLevel(int wordLevel);
 
     List<Word> queryWordByAuthor(String author);
+
+    List<Word> randomQuery(int number);
 }

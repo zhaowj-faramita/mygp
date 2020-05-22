@@ -34,14 +34,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("到了");
         // 根据用户名去查找用户信息
         Customer customer = iCustomerService.queryCustomerByUsername(username);
 
         if(customer == null) {
             throw new UsernameNotFoundException(String.format("Not user Found with '%s'", username));
         }
-        return new User(customer.getUsername(),passwordEncoder.encode(customer.getPassword()), AuthorityUtils.createAuthorityList("Guest"));
+
+        return new User(customer.getUsername(),passwordEncoder.encode(customer.getPassword()), AuthorityUtils.createAuthorityList(customer.getRole()));
 
     }
 

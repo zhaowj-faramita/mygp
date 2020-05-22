@@ -8,6 +8,7 @@ import com.zhaowenjie.mygp.utils.CodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,5 +66,23 @@ public class IWordServiceImpl implements IWordService {
     @Override
     public List<Word> queryWordByAuthor(String author) {
         return iWordDao.queryWordByAuthor(author);
+    }
+
+    @Override
+    public List<Word> randomQuery(int number) {
+        List<Word> allWord = this.findAll();
+        List<Word> randomWord = new ArrayList<>(0);
+        List<Integer> randomIndex = new ArrayList<>();
+        for(int i = 0;i<number;i++){
+            Integer index = (int)(Math.random()*(allWord.size()));
+            if(!randomIndex.contains(index)){
+                randomIndex.add(index);
+                randomWord.add(allWord.get(index));
+            }
+        }
+        randomWord.sort((o1,o2)->{
+           return o1.getPublishDate().getTime()>o2.getPublishDate().getTime()?1:-1;
+        });
+        return randomWord;
     }
 }

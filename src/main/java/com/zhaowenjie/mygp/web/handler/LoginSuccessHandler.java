@@ -16,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
@@ -29,16 +31,17 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        System.out.println("又到了");
         response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control","no-cache");
         try {
             User details = (User) userDetailsService.loadUserByUsername(authentication.getName());
-
             String token = JwtTokenUtils.TOKEN_PREFIX + JwtTokenUtils.createToken(details, false);
             response.setHeader(JwtTokenUtils.TOKEN_HEADER, token);
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Cache-Control","no-cache");
-            response.getWriter().write(objectMapper.writeValueAsString(MessageUtil.success(token)));
+            List<Object> list = new ArrayList<>();
+            list.add(token);
+            list.add(details.getAuthorities());
+            response.getWriter().write(objectMapper.writeValueAsString(MessageUtil.success(list)));
         } catch (Exception e) {
             response.getWriter().write(objectMapper.writeValueAsString(MessageUtil.error(CodeUtil.LOGINFAIL_CODE, "创建token失败，请与管理员联系")));
         }

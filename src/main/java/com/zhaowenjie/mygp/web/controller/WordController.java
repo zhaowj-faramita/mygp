@@ -23,15 +23,15 @@ public class WordController {
 
     @ApiOperation(value = "添加一个文档或者修改一个已有的文档")
     @PostMapping("/addOrUpdate")
-    @ApiImplicitParam(name = "id",value = "提供id以修改已有的文档",paramType = "query",dataType = "int")
     public Message addWord(Word word) {
         iWordService.addWord(word);
+        System.out.println(word);
         return MessageUtil.success();
     }
 
     @ApiOperation("通过id删除题目")
     @GetMapping("/delete/byId")
-    @ApiImplicitParam(name = "id",value = "要删除文档的主键",paramType = "query",required = true)
+    @ApiImplicitParam(name = "id",value = "要删除文档的主键",paramType = "query",required = true, dataType="Integer")
     public Message removeWord(int id) {
         iWordService.deleteWord(id);
         return MessageUtil.success();
@@ -46,8 +46,8 @@ public class WordController {
     }
 
     @ApiOperation("根据主键查询文档")
-    @GetMapping("/query/ayId")
-    @ApiImplicitParam(name = "id", value = "要删除文档的主键", paramType = "query", required = true)
+    @GetMapping("/query/byId")
+    @ApiImplicitParam(name = "id", value = "要查询文档的主键", paramType = "query", required = true, dataType="Integer")
     public Message<Word> queryWordById(int id) {
         return MessageUtil.success(iWordService.queryWordById(id));
     }
@@ -66,7 +66,7 @@ public class WordController {
 
     @ApiOperation("根据某文档id获取其从属文档")
     @GetMapping("/query/byParentId")
-    @ApiImplicitParam(name = "ParentId", value = "要查找文档的主键", paramType = "query", required = true)
+    @ApiImplicitParam(name = "ParentId", value = "要查找文档的主键", paramType = "query", required = true, dataType="Integer")
     public Message<List<Word>> findWordByParentId(int ParentId) {
         return MessageUtil.success(iWordService.queryWordByParent_id(ParentId));
 
@@ -74,7 +74,7 @@ public class WordController {
 
     @ApiOperation("根据文档级别获取文档")
     @GetMapping("/query/byWordLevel")
-    @ApiImplicitParam(name = "WordLevel", value = "要查找文档的级别", paramType = "query", required = true)
+    @ApiImplicitParam(name = "WordLevel", value = "要查找文档的级别", paramType = "query", required = true, dataType="Integer")
     public Message<List<Word>> queryWordByWordLevel(int WordLevel) {
         return MessageUtil.success(iWordService.queryWordByWordLevel(WordLevel));
     }
@@ -84,5 +84,12 @@ public class WordController {
     @ApiImplicitParam(name = "author", value = "要查找文档的作者", paramType = "query", required = true)
     public Message<List<Word>> queryWordByAuthor(String author) {
         return MessageUtil.success(iWordService.queryWordByAuthor(author));
+    }
+
+    @ApiOperation("随机获取文档")
+    @GetMapping("/query/byRandom")
+    @ApiImplicitParam(name = "number", value = "要随机获取的个数", paramType = "query", required = true, dataType="Integer")
+    public Message<List<Word>> queryWordByRandom(int number) {
+        return MessageUtil.success(iWordService.randomQuery(number));
     }
 }

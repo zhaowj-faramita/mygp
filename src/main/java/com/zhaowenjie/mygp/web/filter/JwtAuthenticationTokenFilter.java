@@ -33,13 +33,21 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader(JwtTokenUtils.TOKEN_HEADER);
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control","no-cache");
+        String allowHeaders = "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With, Authorization";
+        response.addHeader("Access-Control-Allow-Headers", allowHeaders);
+        if (request.getMethod().equals( "OPTIONS" )) {
+            response.setStatus( 200 );
+            return;
+        }
         if(token != null && StringUtils.startsWith(token, JwtTokenUtils.TOKEN_PREFIX)) {
             token = StringUtils.substring(token, JwtTokenUtils.TOKEN_PREFIX.length());
         } else {
             filterChain.doFilter(request, response);
             return;
         }
-
         try {
             String username = JwtTokenUtils.getUsername(token);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

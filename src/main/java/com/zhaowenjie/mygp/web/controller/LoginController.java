@@ -38,7 +38,7 @@ public class LoginController {
         // TODO 这里面不需要写任何代码，由UserDeatilsService去处理
     }
 
-    @GetMapping("/getUserDetailByToken")
+    @PostMapping("/getUserDetailByToken")
     @ApiOperation(value = "根据token得到用户信息")
     public Message<? extends Object> getUserDetailByToken(HttpServletRequest request, HttpServletResponse response) {
         String token = request.getHeader(JwtTokenUtils.TOKEN_HEADER);

@@ -20,7 +20,6 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
-        System.out.println("到錯了");
         response.setContentType("application/json;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control","no-cache");
