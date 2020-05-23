@@ -87,7 +87,8 @@ public class IWordServiceImpl implements IWordService {
             }
         }
         randomWord.sort((o1,o2)->{
-           return o1.getPublishDate().getTime()>o2.getPublishDate().getTime()?1:-1;
+            int index = o1.getPublishDate().getTime()>o2.getPublishDate().getTime()?-1:1;
+           return index;
         });
         return randomWord;
     }
