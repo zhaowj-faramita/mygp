@@ -66,17 +66,17 @@ public class WordController {
 
     @ApiOperation("根据某文档id获取其从属文档")
     @GetMapping("/query/byParentId")
-    @ApiImplicitParam(name = "ParentId", value = "要查找文档的主键", paramType = "query", required = true, dataType="Integer")
-    public Message<List<Word>> findWordByParentId(int ParentId) {
-        return MessageUtil.success(iWordService.queryWordByParent_id(ParentId));
+    @ApiImplicitParam(name = "parentId", value = "要查找文档的主键", paramType = "query", required = true, dataType="Integer")
+    public Message<List<Word>> findWordByParentId(int parentId) {
+        return MessageUtil.success(iWordService.queryWordByParent_id(parentId));
 
     }
 
     @ApiOperation("根据文档级别获取文档")
     @GetMapping("/query/byWordLevel")
-    @ApiImplicitParam(name = "WordLevel", value = "要查找文档的级别", paramType = "query", required = true, dataType="Integer")
-    public Message<List<Word>> queryWordByWordLevel(int WordLevel) {
-        return MessageUtil.success(iWordService.queryWordByWordLevel(WordLevel));
+    @ApiImplicitParam(name = "wordLevel", value = "要查找文档的级别", paramType = "query", required = true, dataType="Integer")
+    public Message<List<Word>> queryWordByWordLevel(int wordLevel) {
+        return MessageUtil.success(iWordService.queryWordByWordLevel(wordLevel));
     }
 
     @ApiOperation("根据作者获取文档")
@@ -92,4 +92,12 @@ public class WordController {
     public Message<List<Word>> queryWordByRandom(int number) {
         return MessageUtil.success(iWordService.randomQuery(number));
     }
+
+    @ApiOperation("根据文档标题获取文档")
+    @GetMapping("/query/byTitle")
+    @ApiImplicitParam(name = "title", value = "要查找文档的作者", paramType = "query", required = true)
+    public Message<List<Word>> queryWordByTitle(String title) {
+        return MessageUtil.success(iWordService.queryWordByTitle("%"+title+"%"));
+    }
+
 }

@@ -25,5 +25,7 @@ public interface IWordService {
 
     List<Word> queryWordByAuthor(String author);
 
+    List<Word> queryWordByTitle(String title);
+
     List<Word> randomQuery(int number);
 }

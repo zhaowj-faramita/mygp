@@ -65,7 +65,11 @@ public class IWordServiceImpl implements IWordService {
 
     @Override
     public List<Word> queryWordByAuthor(String author) {
-        return iWordDao.queryWordByAuthor(author);
+        List<Word> authorWord =iWordDao.queryWordByAuthor(author);
+        authorWord.sort((o1,o2)->{
+            return o1.getWordLevel()>o2.getWordLevel()?-1:1;
+        });
+        return authorWord;
     }
 
     @Override
@@ -78,11 +82,18 @@ public class IWordServiceImpl implements IWordService {
             if(!randomIndex.contains(index)){
                 randomIndex.add(index);
                 randomWord.add(allWord.get(index));
+            }else{
+                i--;
             }
         }
         randomWord.sort((o1,o2)->{
            return o1.getPublishDate().getTime()>o2.getPublishDate().getTime()?1:-1;
         });
         return randomWord;
+    }
+
+    @Override
+    public List<Word> queryWordByTitle(String title) {
+        return iWordDao.queryWordByTitleLike(title);
     }
 }
